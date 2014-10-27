@@ -1,0 +1,235 @@
+<?php
+
+namespace Rico\Dashboard\Controllers;
+
+use Rico\Dashboard\Entities\Entity;
+
+/**
+ * Class CrudController
+ *
+ * @TODO сделать все сообщнения через \Lang
+ *
+ * @package Rico\Dashboard\Controllers
+ */
+class CrudController extends BaseController
+{
+    protected $_entity;
+    protected $_name;
+    protected $_parentName; // entity parent name
+    protected $_rules = []; // entity validation rules
+    protected $_afterSaveRoute = 'self'; // 'self' (default) | 'index' | 'parent'
+    protected $_afterDeleteRoute = 'parent'; // 'parent' (default) | 'index'
+
+    public function __construct(){}
+
+    /**
+     * @param Entity|null $parentEntity
+     */
+    public function index($parentEntity = null)
+    {
+        $entityClass = $this->_getEntityClass();
+        $parentAttribute = $this->_getParentAttribute();
+        $entitiesName = str_plural(camel_case($this->_name)); // множественное число имени сущностей (напр. `articles`)
+        $parentId = $parentEntity->id;
+
+        $entities = $parentEntity === null ? $entityClass::all() : $entityClass::where($parentAttribute, $parentId);
+
+        $viewParams = [
+            $entitiesName => $entities
+        ];
+
+        $this->_populateIndexView($viewParams);
+
+    }
+
+
+    /**
+     * view form view
+     *
+     * @param int $id
+     */
+    public function view($id)
+    {
+        $entity = $this->_getEntity($id);
+        $parentName = $this->_parentName;
+
+        $viewParams = [camel_case($this->_name) => $entity];
+        if ($parentName) {
+            $viewParams[camel_case($parentName)] = $entity->$parentName;
+        }
+        $this->_populateCreateView($viewParams);
+    }
+
+    /**
+     * create form view
+     *
+     * @param Entity|null $parentEntity
+     */
+    public function create($parentEntity = null)
+    {
+        $entity = $this->_getEntity();
+        $parentName = $this->_parentName;
+
+        $viewParams = [
+            camel_case($this->_name) => $entity,
+        ];
+        if ($parentName) {
+            $this->_setParent($entity, $parentEntity);
+            $viewParams[camel_case($parentName)] = $parentEntity;
+        }
+        $this->_populateCreateView($viewParams);
+    }
+
+    /**
+     * @param null $id
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
+    public function store($id = null)
+    {
+        $rules = $this->_rules;
+        $input = $this->_getInput();
+
+        $validator = \Validator::make($input, $rules);
+
+        if ($validator->fails()) {
+            \Flash::error('Проверьте правильность введённых данных');
+            return \Redirect::back()->withInput()->withErrors($validator);
+        } else {
+            $entity = $this->_getEntity($id);
+            $entity->fill($input);
+            $entity->save();
+
+            $this->_onEntitySaved($entity, $input);
+
+            \Flash::success('Сохранено');
+            return $this->_redirectTo($this->_afterSaveRoute, $entity);
+        }
+    }
+
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($entity)
+    {
+        $entity->delete();
+        \Flash::success('Удалено');
+
+        if ($this->_parentName) {
+            $parentName = $this->_parentName;
+            $parent = $entity->$parentName;
+            return $this->_redirectTo($this->_afterDeleteRoute, null, $parent);
+        } else {
+            return $this->_redirectTo('index');
+        }
+    }
+
+    /**
+     * Устанавливаем в сущность родительскую сущность, например $entity->book_id = $book->id
+     *
+     * @param Entity $entity
+     * @param Entity $parentEntity
+     */
+    protected function _setParent($entity, $parentEntity)
+    {
+        $parentAttribute = $this->_getParentAttribute();
+        $entity->$parentAttribute = $parentEntity->id;
+    }
+
+    /**
+     * атрибут сущности указывающий на родителя, например `book_id`
+     *
+     * @return string
+     */
+    protected function _getParentAttribute()
+    {
+        return $this->_parentName . '_id';
+    }
+
+    /**
+     * @param array $viewParams
+     */
+    protected function _populateCreateView($viewParams)
+    {
+        $this->_populateView("admin.{$this->_name}.create", $viewParams);
+    }
+
+    /**
+     * @param array $viewParams
+     */
+    protected function _populateIndexView($viewParams)
+    {
+        $this->_populateView("admin.{$this->_name}.index", $viewParams);
+    }
+
+    /**
+     * @return array
+     */
+    protected function _getInput()
+    {
+        return \Input::all();
+    }
+
+    /**
+     * Получаем новую сущность, если id === null или уще имеющуюся в другом случае
+     *
+     * @param null|int $id
+     * @return Entity
+     */
+    protected function _getEntity($id = null)
+    {
+        /** @var Entity $entityClass */
+        $entityClass = $this->_getEntityClass();
+        return $id === null ? $entityClass::findOrFail($id) : new $entityClass;
+    }
+
+    /**
+     * @return Entity
+     */
+    protected function _getEntityClass()
+    {
+        return $this->_entity;
+    }
+
+    /**
+     * @param null|string $routeName
+     * @param Entity $entity
+     * @param Entity $parent
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function _redirectTo($routeName = null, $entity = null, $parent = null)
+    {
+        switch ($routeName) {
+            case 'self':
+                return \Redirect::route(".{$this->_name}.view", $entity->id);
+                break;
+            case 'parent':
+                $parentName = $this->_parentName;
+                $route = ".{$parentName}.view";
+
+                $parentId = $parent ? $parent->id : $entity->$parentName->id;
+                return \Redirect::route($route, $parentId);
+                break;
+            case 'index':
+                $parentName = $this->_parentName;
+                $route = ".{$this->_name}.index";
+
+                if ($parent || $parentName)  {
+                    $parentId = $parent ? $parent->id : $entity->$parentName->id;
+                    return \Redirect::route($route, $parentId);
+                } else {
+                    return \Redirect::route($route);
+                }
+                break;
+            default:
+                return \Redirect::route(".{$this->_name}.view", $entity->id);
+                break;
+        }
+    }
+
+    /**
+     * @param Entity $entity
+     * @param array $input
+     */
+    protected function _onEntitySaved($entity, $input = []) {}
+}
