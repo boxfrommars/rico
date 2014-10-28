@@ -41,7 +41,7 @@ MCrypt PHP Extension
 
 # Overview
 
-роуты лежат в файле `app/routes.php`
-виды в папке -- `app/views`
-базовый crud контроллер -- `app/Rico/Dashboard/Controllers/CrudController.php`
-текущая структура данных в `docs/db-schema.dia`
+* роуты лежат в файле `app/routes.php`
+* виды в папке -- `app/views`
+* базовый crud контроллер -- `app/Rico/Dashboard/Controllers/CrudController.php`
+* текущая структура данных в `docs/db-schema.dia`
