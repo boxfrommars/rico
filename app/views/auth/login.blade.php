@@ -43,7 +43,7 @@
         border-top-right-radius: 0;
     }
 </style>
-<form method="POST" action="{{{ route('do-login') }}}" accept-charset="UTF-8" class="form-signin">
+    {{ Form::open(['url' => route('do-login'), 'class' => 'form-signin']) }}
     <h2 class="form-signin-heading">Вход</h2>
     <input type="email" class="form-control" tabindex="1" placeholder="Email" name="email" id="email" value="{{{ Input::old('email') }}}">
     <input class="form-control" placeholder="Пароль" type="password" name="password" id="password" required>

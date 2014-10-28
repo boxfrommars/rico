@@ -287,7 +287,7 @@ $(document).ready(function(){
         theme: 'bootstrap'
     });
 
-    $('body').on('click', '[data-action="delete"]', function(e){
+    $('body').on('click', '[data-action="destroy"]', function(e){
         if (!confirm('Вы действительно хотите удалить?')) {
             e.preventDefault();
         }

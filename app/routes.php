@@ -1,8 +1,29 @@
 <?php
 
+Route::pattern('id', '[0-9]+');
+
 Route::get('/',
     function () {
         return View::make('hello');
+    }
+);
+
+// все пост-запросы прогоняем через csrf фильтр
+Route::when('*', 'csrf', array('post'));
+
+// also see /app/start/global.php
+App::missing(function() {
+    return Response::view('main.404', array(), 404);
+});
+
+/** общие админские роуты */
+Route::group(
+    array('before' => ['auth', 'can:manage_dashboard'], 'prefix' => 'admin'),
+    function () {
+        Route::post('sort', '\Rutorika\Sortable\SortableController@sort');
+
+        Route::post('image/upload', array('as' => '.image.upload',  'uses' => 'App\Controllers\Admin\UploadController@image'));
+        Route::post('file/upload',  array('as' => '.file.upload',   'uses' => 'App\Controllers\Admin\UploadController@file'));
     }
 );
 
@@ -11,7 +32,15 @@ Route::group(
     function () {
         Route::get('/', ['as' => '.main', 'uses' => 'MainController@index']);
 
-        $crudRoutes = [];
+        $entityDefaultNameSpace = 'App\Entities\\';
+
+        $crudRoutes = [
+            ['name' => 'user'],
+            ['name' => 'role', 'entityNameSpace' => 'Rico\Auth\\'],
+
+            ['name' => 'human'],
+            ['name' => 'pet', 'prefix' => 'human/{human}/'],
+        ];
 
         foreach ($crudRoutes as $route) {
             $name = $route['name'];
@@ -20,14 +49,15 @@ Route::group(
             $prefix = array_key_exists('prefix', $route) ? $route['prefix'] : '';
             $entityClassName = studly_case($name);
 
-            Route::model($entity, "Neo\\Entities\\{$entityClassName}");
+            $entityNameSpace = isset($route['entityNameSpace']) ? $route['entityNameSpace'] : $entityDefaultNameSpace;
+            Route::model($entity, $entityNameSpace . "{$entityClassName}");
 
             Route::get( "{$name}/{id}",                 ["as" => ".{$name}.view",      "uses" => "{$controller}@view"]);
             Route::get( "{$prefix}{$name}",             ["as" => ".{$name}.index",     "uses" => "{$controller}@index"]);
             Route::get( "{$prefix}{$name}/create",      ["as" => ".{$name}.create",    "uses" => "{$controller}@create"]);
             Route::post("{$name}/store",                ["as" => ".{$name}.store",     "uses" => "{$controller}@store"]);
             Route::post("{$name}/{id}/update",          ["as" => ".{$name}.update",    "uses" => "{$controller}@store"]);
-            Route::get( "{$name}/{$entity}/destroy",    ["as" => ".{$name}.destroy",   "uses" => "{$controller}@destroy"]);
+            Route::get( "{$name}/{{$entity}}/destroy",  ["as" => ".{$name}.destroy",   "uses" => "{$controller}@destroy"]);
         }
     }
 );

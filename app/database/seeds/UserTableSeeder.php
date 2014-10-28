@@ -25,10 +25,12 @@ class UserTableSeeder extends Seeder
 
         $realtorRole = new Role();
         $realtorRole->name = 'user';
+        $realtorRole->title = 'Пользователь';
         $realtorRole->save();
 
         $adminRole = new Role();
         $adminRole->name = 'admin';
+        $adminRole->title = 'Админ';
         $adminRole->save();
 
         $manageDashboard = new Permission();

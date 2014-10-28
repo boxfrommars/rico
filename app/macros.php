@@ -2,7 +2,7 @@
 
 Form::macro(
     'textareaField',
-    function ($name, $title, $fieldAttributes = array()) {
+    function ($name, $title, $fieldAttributes = []) {
         $html = Form::field('textarea', $name, $title, $fieldAttributes);
         return Form::wrap($name, $title, $html);
     }
@@ -10,7 +10,7 @@ Form::macro(
 
 Form::macro(
     'colorField',
-    function ($name, $title, $fieldAttributes = array(), $wrap = true) {
+    function ($name, $title, $fieldAttributes = [], $wrap = true) {
         $html = Form::field('color', $name, $title, $fieldAttributes);
         return $wrap ? Form::wrap($name, $title, $html) : $html;
     }
@@ -18,15 +18,23 @@ Form::macro(
 
 Form::macro(
     'textField',
-    function ($name, $title, $fieldAttributes = array()) {
+    function ($name, $title, $fieldAttributes = [], $wrap = true, $value = null) {
         $html = Form::field('text', $name, $title, $fieldAttributes);
         return Form::wrap($name, $title, $html);
     }
 );
 
 Form::macro(
+    'numberField',
+    function ($name, $title, $fieldAttributes = [], $wrap = true, $value = null) {
+        $html = Form::field('number', $name, $title, $fieldAttributes);
+        return Form::wrap($name, $title, $html);
+    }
+);
+
+Form::macro(
     'dateField',
-    function ($name, $title, $fieldAttributes = array()) {
+    function ($name, $title, $fieldAttributes = []) {
         $html = Form::field('date', $name, $title, $fieldAttributes);
         return Form::wrap($name, $title, $html);
     }
@@ -34,7 +42,7 @@ Form::macro(
 
 Form::macro(
     'selectField',
-    function ($name, $title, $options, $fieldAttributes = array()) {
+    function ($name, $title, $options, $fieldAttributes = []) {
         $html = Form::field('select', $name, $title, $fieldAttributes, ['values' => $options]);
         return Form::wrap($name, $title, $html);
     }
@@ -42,7 +50,7 @@ Form::macro(
 
 Form::macro(
     'checkboxField',
-    function ($name, $title, $fieldAttributes = array()) {
+    function ($name, $title, $fieldAttributes = []) {
         $html = Form::field('checkbox', $name, $title, $fieldAttributes);
         return Form::wrap($name, $title, $html);
     }
@@ -50,7 +58,7 @@ Form::macro(
 
 Form::macro(
     'imageField',
-    function ($name, $title, $type = 'default', $fieldAttributes = array(), $wrap = true) {
+    function ($name, $title, $type = 'default', $fieldAttributes = [], $wrap = true) {
         $html = Form::field('image', $name, $title, $fieldAttributes, ['type' => $type]);
 
         return $wrap ? Form::wrap($name, $title, $html) : $html;
@@ -59,7 +67,7 @@ Form::macro(
 
 Form::macro(
     'fileField',
-    function ($name, $title, $type = 'default', $fieldAttributes = array(), $wrap = true) {
+    function ($name, $title, $type = 'default', $fieldAttributes = [], $wrap = true) {
         $html = Form::field('file', $name, $title, $fieldAttributes, ['type' => $type]);
 
         return $wrap ? Form::wrap($name, $title, $html) : $html;
@@ -68,7 +76,7 @@ Form::macro(
 
 Form::macro(
     'geopointField',
-    function ($name, $title, $fieldAttributes = array(), $settings = array()) {
+    function ($name, $title, $fieldAttributes = [], $settings = []) {
         $html = Form::field('geopoint', $name, $title, $fieldAttributes);
         return Form::wrap($name, $title, $html, $settings);
     }
@@ -76,10 +84,10 @@ Form::macro(
 
 Form::macro(
     'field',
-    function ($fieldType, $name, $title, $fieldAttributes = array(), $options = array()) {
+    function ($fieldType, $name, $title, $fieldAttributes = [], $options = []) {
 
         $errors = $errors = Session::get('errors', new Illuminate\Support\MessageBag);
-        $classes = array_key_exists('class', $fieldAttributes) ? (array) $fieldAttributes['class'] : array();
+        $classes = array_key_exists('class', $fieldAttributes) ? (array) $fieldAttributes['class'] : [];
         $value = Form::getValueAttribute($name);
 
         $classes[] = 'form-control';
@@ -94,6 +102,9 @@ Form::macro(
         switch ($fieldType) {
             case 'text':
                 $html .= Form::text($name, null, $fieldAttributes);
+                break;
+            case 'number':
+                $html .= Form::number($name, null, $fieldAttributes);
                 break;
             case 'date':
                 $date = $value ?: 'today';
@@ -172,12 +183,12 @@ Form::macro(
 
 Form::macro(
     'wrap',
-    function ($name, $title, $fieldHtml, $settings = array()) {
+    function ($name, $title, $fieldHtml, $settings = []) {
         $errors = $errors = Session::get('errors', new Illuminate\Support\MessageBag);
 
         $html = '';
         $html .= '<div class="form-group">';
-        $html .= Form::label($name, $title, array('class' => 'col-sm-3 control-label'));
+        $html .= Form::label($name, $title, ['class' => 'col-sm-3 control-label']);
         $html .= '<div class="col-sm-9">';
 
         $html .= $fieldHtml;
@@ -212,6 +223,31 @@ Form::macro('formAddAnotherField', function($href, $title = 'Добавить е
 });
 
 /**
+* @param string $name
+* @param string $action
+* @param mixed $routeParams
+ * @return string
+ */
+function grid_link($name, $action, $routeParams)
+{
+    switch ($action) {
+        case 'view': // no break
+        case 'edit':
+            $icon = 'pencil';
+            break;
+        case 'destroy':
+            $icon = 'remove';
+            break;
+        default:
+            $icon = null;
+    }
+
+    $linkHtml = $icon ? '<span class="glyphicon glyphicon-' . $icon . '"></span>' : $action;
+
+    return '<a data-action="' . $action . '" href="' . route(".{$name}.{$action}", $routeParams) . '">' . $linkHtml . '</a>';
+}
+
+/**
  * @param int $n
  * @param str $form1 форма использующаяся в словосочетании с числительным 1 (1 яблоко, 1 квартира)
  * @param str $form2 форма использующаяся в словосочетании с числительным 2 (2 яблока, 2 квартиры)
@@ -242,7 +278,7 @@ function file_src($filename, $type) {
 }
 
 function human_filesize($bytes, $decimals = 2) {
-    $size = array('B','kB','MB','GB','TB','PB','EB','ZB','YB');
+    $size = ['B','kB','MB','GB','TB','PB','EB','ZB','YB'];
     $factor = floor((strlen($bytes) - 1) / 3);
     return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . ' ' . @$size[$factor];
 }

@@ -30,8 +30,9 @@
     <div id="wrapper">
         <div id="sidebar-wrapper">
             <ul class="nav sidebar-nav">
-                <li><a href="#">Пользователи</a></li>
-                <li class="nav-divide"><a href="#">Настройки</a></li>
+                <li><a href="{{ route('.user.index') }}">Пользователи</a></li>
+                <li><a href="{{ route('.role.index') }}">Роли</a></li>
+                <li class="nav-divide"><a href="{{ route('.human.index') }}">Гуманоиды</a></li>
             </ul>
         </div>
 

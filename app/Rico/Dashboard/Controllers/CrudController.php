@@ -30,9 +30,8 @@ class CrudController extends BaseController
         $entityClass = $this->_getEntityClass();
         $parentAttribute = $this->_getParentAttribute();
         $entitiesName = str_plural(camel_case($this->_name)); // множественное число имени сущностей (напр. `articles`)
-        $parentId = $parentEntity->id;
 
-        $entities = $parentEntity === null ? $entityClass::all() : $entityClass::where($parentAttribute, $parentId);
+        $entities = $parentEntity === null ? $entityClass::all() : $entityClass::where($parentAttribute, $parentEntity->id);
 
         $viewParams = [
             $entitiesName => $entities
@@ -50,6 +49,8 @@ class CrudController extends BaseController
      */
     public function view($id)
     {
+
+        \Log::debug($id);
         $entity = $this->_getEntity($id);
         $parentName = $this->_parentName;
 
@@ -88,6 +89,7 @@ class CrudController extends BaseController
     {
         $rules = $this->_rules;
         $input = $this->_getInput();
+        \Log::debug($input);
 
         $validator = \Validator::make($input, $rules);
 
@@ -180,7 +182,9 @@ class CrudController extends BaseController
     {
         /** @var Entity $entityClass */
         $entityClass = $this->_getEntityClass();
-        return $id === null ? $entityClass::findOrFail($id) : new $entityClass;
+        \Log::debug($entityClass);
+        \Log::debug($id);
+        return $id !== null ? $entityClass::findOrFail($id) : new $entityClass;
     }
 
     /**
