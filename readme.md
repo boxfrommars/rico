@@ -4,16 +4,19 @@ PHP >= 5.4
 MCrypt PHP Extension
 
 ### Install
+
     xu@calypso:~$ git clone https://github.com/boxfrommars/rico.git
     xu@calypso:~$ cd rico/
 
 создаём бд (если изменили здесь параметры бд, то меняем их в кофигурации в файле .env.(local.)php)
+
     mysql> CREATE USER 'rico'@'localhost' IDENTIFIED BY 'rico';
     mysql> CREATE DATABASE rico;
     mysql> GRANT ALL PRIVILEGES ON neo . * TO 'rico'@'localhost';
     mysql> FLUSH PRIVILEGES;
 
 настраиваем
+
     xu@calypso:~$ cp example.env.php .env.php // файл конфигурации текущей машины (если используем окружение local, то cp example.env.php .env.local.php )
     xu@calypso:~$ composer update
 
