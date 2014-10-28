@@ -1,14 +1,14 @@
 ## Requirements
 
-PHP >= 5.4
-MCrypt PHP Extension
+* PHP >= 5.4
+* MCrypt PHP Extension
 
 ### Install
 
     xu@calypso:~$ git clone https://github.com/boxfrommars/rico.git
     xu@calypso:~$ cd rico/
 
-создаём бд (если изменили здесь параметры бд, то меняем их в кофигурации в файле .env.(local.)php)
+создаём бд (если изменили здесь параметры бд, то меняем их в кофигурации в файле `.env.(local.)php)`
 
     mysql> CREATE USER 'rico'@'localhost' IDENTIFIED BY 'rico';
     mysql> CREATE DATABASE rico;
@@ -17,8 +17,13 @@ MCrypt PHP Extension
 
 настраиваем
 
-    xu@calypso:~$ cp example.env.php .env.php // файл конфигурации текущей машины (если используем окружение local, то cp example.env.php .env.local.php )
+    xu@calypso:~$ cp example.env.php .env.php // файл конфигурации текущей машины (если используем окружение local, то: cp example.env.php .env.local.php )
+
+устанавливаем зависимости
+
     xu@calypso:~$ composer update
+
+Открываем папки для записи сервером (я тут по-простому сделал, можно аккуратнее -- только серверу)
 
     xu@calypso:~$ chmod a+rw app/storage -R // папка для хранения логов, кеша и всего такого
     xu@calypso:~$ chmod a+rw public/assets/image -R // папка для загрузки пользовательских изображений
