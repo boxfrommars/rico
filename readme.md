@@ -12,7 +12,7 @@ MCrypt PHP Extension
 
     mysql> CREATE USER 'rico'@'localhost' IDENTIFIED BY 'rico';
     mysql> CREATE DATABASE rico;
-    mysql> GRANT ALL PRIVILEGES ON neo . * TO 'rico'@'localhost';
+    mysql> GRANT ALL PRIVILEGES ON rico . * TO 'rico'@'localhost';
     mysql> FLUSH PRIVILEGES;
 
 настраиваем
