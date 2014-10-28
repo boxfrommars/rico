@@ -25,8 +25,9 @@ MCrypt PHP Extension
     xu@calypso:~$ chmod a+rw public/assets/file -R // папка для загрузки пользовательских файлов
 
 если нет дампа, то
+
     xu@calypso:~$ php artisan migrate
-    xu@calypso:~$ php artisan db:seed // тестовые данные, чтобы обновить миграции и данные: php artisan migrate:refresh --seed
+    xu@calypso:~$ php artisan db:seed // тестовые данные, чтобы обновить миграции и данные: `php artisan migrate:refresh --seed`
 
 создастся тестовый пользователь-администратор с логином/паролем boxfrommars@gmail.com/test, изменить эти данные можно
 в файле `app/database/seeds/UserTableSeeder.php`
@@ -35,7 +36,7 @@ MCrypt PHP Extension
     xu@calypso:~$ php artisan serve --port 8444 // или любой другой незанятый порт, по умолчанию 8000
     // теперь сайт доступен по адресу http://localhost:8444
 
-Для установки тестового окружения (local), добавьте в массив `$env` файла `bootstrap/start.php` имя своего компьютера (определяется командой `hostname`)
+Для установки тестового окружения (`local`), добавьте в массив `$env` файла `bootstrap/start.php` имя своего компьютера (определяется командой `hostname`)
 В тестовом окружении будет доступна дебагбар-панель
 
 # Overview
