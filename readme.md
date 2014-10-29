@@ -44,6 +44,11 @@
 Для установки тестового окружения (`local`), добавьте в массив `$env` файла `bootstrap/start.php` имя своего компьютера (определяется командой `hostname`)
 В тестовом окружении будет доступна дебагбар-панель
 
+# Демо
+
+* http://rico.boxfrommars.ru/admin админка
+* http://rico.boxfrommars.ru/angular-app пример rest-приложения
+
 # Overview
 
 * роуты лежат в файле `app/routes.php`
