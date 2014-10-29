@@ -8,13 +8,31 @@ Route::get('/',
     }
 );
 
+
+Route::get('angular-app',
+    function () {
+        return View::make('example.app');
+    }
+);
+
 // все пост-запросы прогоняем через csrf фильтр
-Route::when('*', 'csrf', array('post'));
+Route::when('/admin/*', 'csrf', array('post'));
 
 // also see /app/start/global.php
 App::missing(function() {
     return Response::view('main.404', array(), 404);
 });
+
+Route::group(
+    ['prefix' => 'api'],
+    function () {
+        Route::get(   'humans',       ['as' => 'api.human.index',     'uses' => 'App\Controllers\ExampleApp\HumanController@index']);
+        Route::post(  'humans',       ['as' => 'api.human.store',     'uses' => 'App\Controllers\ExampleApp\HumanController@store']);
+        Route::get(   'humans/{id}',  ['as' => 'api.human.view',      'uses' => 'App\Controllers\ExampleApp\HumanController@view']);
+        Route::put(   'humans/{id}',  ['as' => 'api.human.update',    'uses' => 'App\Controllers\ExampleApp\HumanController@store']);
+        Route::delete('humans/{id}',  ['as' => 'api.human.destroy',   'uses' => 'App\Controllers\ExampleApp\HumanController@destroy']);
+    }
+);
 
 /** общие админские роуты */
 Route::group(

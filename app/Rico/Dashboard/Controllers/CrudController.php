@@ -71,9 +71,7 @@ class CrudController extends BaseController
         $entity = $this->_getEntity();
         $parentName = $this->_parentName;
 
-        $viewParams = [
-            camel_case($this->_name) => $entity,
-        ];
+        $viewParams = [camel_case($this->_name) => $entity];
         if ($parentName) {
             $this->_setParent($entity, $parentEntity);
             $viewParams[camel_case($parentName)] = $parentEntity;
