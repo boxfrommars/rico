@@ -40,7 +40,7 @@ class RestController extends BaseController
         $validator = \Validator::make($input, $rules);
 
         if ($validator->fails()) {
-            return \Response::json(['success' => false, 'errors' => $validator->errors(), 422]);
+            return \Response::json(['success' => false, 'errors' => $validator->errors()], 422);
         } else {
             $entity = $this->_getEntity($id);
             $entity->fill($input);

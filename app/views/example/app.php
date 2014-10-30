@@ -20,7 +20,14 @@
 </head>
 <body>
 
-<div class="container" ng-view></div>
+<div class="container">
+
+    <div ng-controller="ErrorHandlerController" ng-show="messanger.message.text" class="alert" ng-class="'alert-' + messanger.message.type" style="margin-top: 20px;">
+        <button type="button" class="close" ng-click="messanger.message = {}">&times;</button>
+        {{ messanger.message.text }}
+    </div>
+    <div ng-view></div>
+</div>
 
 </body>
 </html>

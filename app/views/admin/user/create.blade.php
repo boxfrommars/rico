@@ -18,7 +18,7 @@
         {{ Form::checkboxField('confirmed', 'Подтверждён') }}
 
         <div class="form-group">
-            <label for="video" class="col-sm-3 control-label">Планировки квартир</label>
+            <label for="video" class="col-sm-3 control-label">Роли</label>
             <div class="col-sm-9">
                 <ul class="list-inline equal-width-list">
                     <?php $userRolesIds = $user->roles->lists('id'); \Log::debug($userRolesIds); ?>
