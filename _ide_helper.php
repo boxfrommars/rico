@@ -1,7 +1,7 @@
 <?php
 /**
  * An helper file for Laravel 4, to provide autocomplete information to your IDE
- * Generated for Laravel 4.2.11 on 2014-10-27.
+ * Generated for Laravel 4.2.11 on 2014-11-06.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -5305,430 +5305,6 @@ namespace {
     }
 
 
-    class Form extends \Illuminate\Support\Facades\Form{
-        
-        /**
-         * Open up a new HTML form.
-         *
-         * @param array $options
-         * @return string 
-         * @static 
-         */
-        public static function open($options = array()){
-            return \Illuminate\Html\FormBuilder::open($options);
-        }
-        
-        /**
-         * Create a new model based form builder.
-         *
-         * @param mixed $model
-         * @param array $options
-         * @return string 
-         * @static 
-         */
-        public static function model($model, $options = array()){
-            return \Illuminate\Html\FormBuilder::model($model, $options);
-        }
-        
-        /**
-         * Set the model instance on the form builder.
-         *
-         * @param mixed $model
-         * @return void 
-         * @static 
-         */
-        public static function setModel($model){
-            \Illuminate\Html\FormBuilder::setModel($model);
-        }
-        
-        /**
-         * Close the current form.
-         *
-         * @return string 
-         * @static 
-         */
-        public static function close(){
-            return \Illuminate\Html\FormBuilder::close();
-        }
-        
-        /**
-         * Generate a hidden field with the current CSRF token.
-         *
-         * @return string 
-         * @static 
-         */
-        public static function token(){
-            return \Illuminate\Html\FormBuilder::token();
-        }
-        
-        /**
-         * Create a form label element.
-         *
-         * @param string $name
-         * @param string $value
-         * @param array $options
-         * @return string 
-         * @static 
-         */
-        public static function label($name, $value = null, $options = array()){
-            return \Illuminate\Html\FormBuilder::label($name, $value, $options);
-        }
-        
-        /**
-         * Create a form input field.
-         *
-         * @param string $type
-         * @param string $name
-         * @param string $value
-         * @param array $options
-         * @return string 
-         * @static 
-         */
-        public static function input($type, $name, $value = null, $options = array()){
-            return \Illuminate\Html\FormBuilder::input($type, $name, $value, $options);
-        }
-        
-        /**
-         * Create a text input field.
-         *
-         * @param string $name
-         * @param string $value
-         * @param array $options
-         * @return string 
-         * @static 
-         */
-        public static function text($name, $value = null, $options = array()){
-            return \Illuminate\Html\FormBuilder::text($name, $value, $options);
-        }
-        
-        /**
-         * Create a password input field.
-         *
-         * @param string $name
-         * @param array $options
-         * @return string 
-         * @static 
-         */
-        public static function password($name, $options = array()){
-            return \Illuminate\Html\FormBuilder::password($name, $options);
-        }
-        
-        /**
-         * Create a hidden input field.
-         *
-         * @param string $name
-         * @param string $value
-         * @param array $options
-         * @return string 
-         * @static 
-         */
-        public static function hidden($name, $value = null, $options = array()){
-            return \Illuminate\Html\FormBuilder::hidden($name, $value, $options);
-        }
-        
-        /**
-         * Create an e-mail input field.
-         *
-         * @param string $name
-         * @param string $value
-         * @param array $options
-         * @return string 
-         * @static 
-         */
-        public static function email($name, $value = null, $options = array()){
-            return \Illuminate\Html\FormBuilder::email($name, $value, $options);
-        }
-        
-        /**
-         * Create a url input field.
-         *
-         * @param string $name
-         * @param string $value
-         * @param array $options
-         * @return string 
-         * @static 
-         */
-        public static function url($name, $value = null, $options = array()){
-            return \Illuminate\Html\FormBuilder::url($name, $value, $options);
-        }
-        
-        /**
-         * Create a file input field.
-         *
-         * @param string $name
-         * @param array $options
-         * @return string 
-         * @static 
-         */
-        public static function file($name, $options = array()){
-            return \Illuminate\Html\FormBuilder::file($name, $options);
-        }
-        
-        /**
-         * Create a textarea input field.
-         *
-         * @param string $name
-         * @param string $value
-         * @param array $options
-         * @return string 
-         * @static 
-         */
-        public static function textarea($name, $value = null, $options = array()){
-            return \Illuminate\Html\FormBuilder::textarea($name, $value, $options);
-        }
-        
-        /**
-         * Create a number input field.
-         *
-         * @param string $name
-         * @param array $options
-         * @return string 
-         * @static 
-         */
-        public static function number($name, $value = null, $options = array()){
-            return \Illuminate\Html\FormBuilder::number($name, $value, $options);
-        }
-        
-        /**
-         * Create a select box field.
-         *
-         * @param string $name
-         * @param array $list
-         * @param string $selected
-         * @param array $options
-         * @return string 
-         * @static 
-         */
-        public static function select($name, $list = array(), $selected = null, $options = array()){
-            return \Illuminate\Html\FormBuilder::select($name, $list, $selected, $options);
-        }
-        
-        /**
-         * Create a select range field.
-         *
-         * @param string $name
-         * @param string $begin
-         * @param string $end
-         * @param string $selected
-         * @param array $options
-         * @return string 
-         * @static 
-         */
-        public static function selectRange($name, $begin, $end, $selected = null, $options = array()){
-            return \Illuminate\Html\FormBuilder::selectRange($name, $begin, $end, $selected, $options);
-        }
-        
-        /**
-         * Create a select year field.
-         *
-         * @param string $name
-         * @param string $begin
-         * @param string $end
-         * @param string $selected
-         * @param array $options
-         * @return string 
-         * @static 
-         */
-        public static function selectYear(){
-            return \Illuminate\Html\FormBuilder::selectYear();
-        }
-        
-        /**
-         * Create a select month field.
-         *
-         * @param string $name
-         * @param string $selected
-         * @param array $options
-         * @param string $format
-         * @return string 
-         * @static 
-         */
-        public static function selectMonth($name, $selected = null, $options = array(), $format = '%B'){
-            return \Illuminate\Html\FormBuilder::selectMonth($name, $selected, $options, $format);
-        }
-        
-        /**
-         * Get the select option for the given value.
-         *
-         * @param string $display
-         * @param string $value
-         * @param string $selected
-         * @return string 
-         * @static 
-         */
-        public static function getSelectOption($display, $value, $selected){
-            return \Illuminate\Html\FormBuilder::getSelectOption($display, $value, $selected);
-        }
-        
-        /**
-         * Create a checkbox input field.
-         *
-         * @param string $name
-         * @param mixed $value
-         * @param bool $checked
-         * @param array $options
-         * @return string 
-         * @static 
-         */
-        public static function checkbox($name, $value = 1, $checked = null, $options = array()){
-            return \Illuminate\Html\FormBuilder::checkbox($name, $value, $checked, $options);
-        }
-        
-        /**
-         * Create a radio button input field.
-         *
-         * @param string $name
-         * @param mixed $value
-         * @param bool $checked
-         * @param array $options
-         * @return string 
-         * @static 
-         */
-        public static function radio($name, $value = null, $checked = null, $options = array()){
-            return \Illuminate\Html\FormBuilder::radio($name, $value, $checked, $options);
-        }
-        
-        /**
-         * Create a HTML reset input element.
-         *
-         * @param string $value
-         * @param array $attributes
-         * @return string 
-         * @static 
-         */
-        public static function reset($value, $attributes = array()){
-            return \Illuminate\Html\FormBuilder::reset($value, $attributes);
-        }
-        
-        /**
-         * Create a HTML image input element.
-         *
-         * @param string $url
-         * @param string $name
-         * @param array $attributes
-         * @return string 
-         * @static 
-         */
-        public static function image($url, $name = null, $attributes = array()){
-            return \Illuminate\Html\FormBuilder::image($url, $name, $attributes);
-        }
-        
-        /**
-         * Create a submit button element.
-         *
-         * @param string $value
-         * @param array $options
-         * @return string 
-         * @static 
-         */
-        public static function submit($value = null, $options = array()){
-            return \Illuminate\Html\FormBuilder::submit($value, $options);
-        }
-        
-        /**
-         * Create a button element.
-         *
-         * @param string $value
-         * @param array $options
-         * @return string 
-         * @static 
-         */
-        public static function button($value = null, $options = array()){
-            return \Illuminate\Html\FormBuilder::button($value, $options);
-        }
-        
-        /**
-         * Get the ID attribute for a field name.
-         *
-         * @param string $name
-         * @param array $attributes
-         * @return string 
-         * @static 
-         */
-        public static function getIdAttribute($name, $attributes){
-            return \Illuminate\Html\FormBuilder::getIdAttribute($name, $attributes);
-        }
-        
-        /**
-         * Get the value that should be assigned to the field.
-         *
-         * @param string $name
-         * @param string $value
-         * @return string 
-         * @static 
-         */
-        public static function getValueAttribute($name, $value = null){
-            return \Illuminate\Html\FormBuilder::getValueAttribute($name, $value);
-        }
-        
-        /**
-         * Get a value from the session's old input.
-         *
-         * @param string $name
-         * @return string 
-         * @static 
-         */
-        public static function old($name){
-            return \Illuminate\Html\FormBuilder::old($name);
-        }
-        
-        /**
-         * Determine if the old input is empty.
-         *
-         * @return bool 
-         * @static 
-         */
-        public static function oldInputIsEmpty(){
-            return \Illuminate\Html\FormBuilder::oldInputIsEmpty();
-        }
-        
-        /**
-         * Get the session store implementation.
-         *
-         * @return \Illuminate\Session\Store $session
-         * @static 
-         */
-        public static function getSessionStore(){
-            return \Illuminate\Html\FormBuilder::getSessionStore();
-        }
-        
-        /**
-         * Set the session store implementation.
-         *
-         * @param \Illuminate\Session\Store $session
-         * @return $this 
-         * @static 
-         */
-        public static function setSessionStore($session){
-            return \Illuminate\Html\FormBuilder::setSessionStore($session);
-        }
-        
-        /**
-         * Register a custom macro.
-         *
-         * @param string $name
-         * @param callable $macro
-         * @return void 
-         * @static 
-         */
-        public static function macro($name, $macro){
-            \Illuminate\Html\FormBuilder::macro($name, $macro);
-        }
-        
-        /**
-         * Checks if macro is registered
-         *
-         * @param string $name
-         * @return boolean 
-         * @static 
-         */
-        public static function hasMacro($name){
-            return \Illuminate\Html\FormBuilder::hasMacro($name);
-        }
-        
-    }
-
-
     class Hash extends \Illuminate\Support\Facades\Hash{
         
         /**
@@ -6541,7 +6117,7 @@ namespace {
          * Overrides the PHP global variables according to this request instance.
          * 
          * It overrides $_GET, $_POST, $_REQUEST, $_SERVER, $_COOKIE.
-         * $_FILES is never override, see rfc1867
+         * $_FILES is never overridden, see rfc1867
          *
          * @api 
          * @static 
@@ -6655,6 +6231,9 @@ namespace {
          * 
          * Be warned that enabling this feature might lead to CSRF issues in your code.
          * Check that you are using CSRF tokens when required.
+         * If the HTTP method parameter override is enabled, an html-form with method "POST" can be altered
+         * and used to send a "PUT" or "DELETE" request via the _method request parameter.
+         * If these methods are not protected against CSRF, this presents a possible vulnerability.
          * 
          * The HTTP method can only be overridden when the real HTTP method is POST.
          *
@@ -7349,7 +6928,7 @@ namespace {
         /**
          * Returns true if the request is a XMLHttpRequest.
          * 
-         * It works if your JavaScript library set an X-Requested-With HTTP header.
+         * It works if your JavaScript library sets an X-Requested-With HTTP header.
          * It is known to work with common JavaScript frameworks:
          *
          * @link http://en.wikipedia.org/wiki/List_of_Ajax_frameworks#JavaScript
@@ -9173,7 +8752,7 @@ namespace {
          * Overrides the PHP global variables according to this request instance.
          * 
          * It overrides $_GET, $_POST, $_REQUEST, $_SERVER, $_COOKIE.
-         * $_FILES is never override, see rfc1867
+         * $_FILES is never overridden, see rfc1867
          *
          * @api 
          * @static 
@@ -9287,6 +8866,9 @@ namespace {
          * 
          * Be warned that enabling this feature might lead to CSRF issues in your code.
          * Check that you are using CSRF tokens when required.
+         * If the HTTP method parameter override is enabled, an html-form with method "POST" can be altered
+         * and used to send a "PUT" or "DELETE" request via the _method request parameter.
+         * If these methods are not protected against CSRF, this presents a possible vulnerability.
          * 
          * The HTTP method can only be overridden when the real HTTP method is POST.
          *
@@ -9981,7 +9563,7 @@ namespace {
         /**
          * Returns true if the request is a XMLHttpRequest.
          * 
-         * It works if your JavaScript library set an X-Requested-With HTTP header.
+         * It works if your JavaScript library sets an X-Requested-With HTTP header.
          * It is known to work with common JavaScript frameworks:
          *
          * @link http://en.wikipedia.org/wiki/List_of_Ajax_frameworks#JavaScript
@@ -12230,7 +11812,688 @@ namespace {
     }
 
 
-    class Flash extends \Rico\Notifications\FlashFacade{
+    class Form extends \Rutorika\Dashboard\HTML\FormBuilderFacade{
+        
+        /**
+         * 
+         *
+         * @param string $title
+         * @param string $name
+         * @param mixed $value
+         * @param array $fieldOptions
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function textField($title, $name, $value = null, $fieldOptions = array(), $options = array()){
+            return \Rutorika\Dashboard\HTML\FormBuilder::textField($title, $name, $value, $fieldOptions, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $title
+         * @param string $name
+         * @param mixed $value
+         * @param array $fieldOptions
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function textareaField($title, $name, $value = null, $fieldOptions = array(), $options = array()){
+            return \Rutorika\Dashboard\HTML\FormBuilder::textareaField($title, $name, $value, $fieldOptions, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $title
+         * @param string $name
+         * @param null $value
+         * @param array $fieldOptions
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function colorField($title, $name, $value = null, $fieldOptions = array(), $options = array()){
+            return \Rutorika\Dashboard\HTML\FormBuilder::colorField($title, $name, $value, $fieldOptions, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $title
+         * @param string $name
+         * @param mixed $value
+         * @param array $fieldOptions
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function numberField($title, $name, $value = null, $fieldOptions = array(), $options = array()){
+            return \Rutorika\Dashboard\HTML\FormBuilder::numberField($title, $name, $value, $fieldOptions, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function selectField($title, $name, $list = array(), $selected = null, $fieldOptions = array(), $options = array()){
+            return \Rutorika\Dashboard\HTML\FormBuilder::selectField($title, $name, $list, $selected, $fieldOptions, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function checkboxField($title, $name, $value = 1, $checked = null, $fieldOptions = array(), $options = array()){
+            return \Rutorika\Dashboard\HTML\FormBuilder::checkboxField($title, $name, $value, $checked, $fieldOptions, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function geopointField($title, $name, $value = null, $fieldOptions = array(), $options = array()){
+            return \Rutorika\Dashboard\HTML\FormBuilder::geopointField($title, $name, $value, $fieldOptions, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function imageField($title, $name, $value = null, $fieldOptions = array(), $options = array()){
+            return \Rutorika\Dashboard\HTML\FormBuilder::imageField($title, $name, $value, $fieldOptions, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function fileField($title, $name, $value = null, $fieldOptions = array(), $options = array()){
+            return \Rutorika\Dashboard\HTML\FormBuilder::fileField($title, $name, $value, $fieldOptions, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $uploadType image|file
+         * @param string $name
+         * @param null $value
+         * @param array $fieldOptions
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function uploadField($uploadType, $name, $value, $fieldOptions, $options){
+            return \Rutorika\Dashboard\HTML\FormBuilder::uploadField($uploadType, $name, $value, $fieldOptions, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function dateField($title, $name, $value = null, $fieldOptions = array(), $options = array()){
+            return \Rutorika\Dashboard\HTML\FormBuilder::dateField($title, $name, $value, $fieldOptions, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function datetimeField($title, $name, $value = null, $fieldOptions = array(), $options = array()){
+            return \Rutorika\Dashboard\HTML\FormBuilder::datetimeField($title, $name, $value, $fieldOptions, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function timeField($title, $name, $value = null, $fieldOptions = array(), $options = array()){
+            return \Rutorika\Dashboard\HTML\FormBuilder::timeField($title, $name, $value, $fieldOptions, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function datetime($name, $value = null, $fieldOptions = array(), $type = 'date'){
+            return \Rutorika\Dashboard\HTML\FormBuilder::datetime($name, $value, $fieldOptions, $type);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function geopoint($name, $value = null, $options = array()){
+            return \Rutorika\Dashboard\HTML\FormBuilder::geopoint($name, $value, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $title
+         * @return string 
+         * @static 
+         */
+        public static function submitField($title = 'Сохранить'){
+            return \Rutorika\Dashboard\HTML\FormBuilder::submitField($title);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $href
+         * @param string $title
+         * @return string 
+         * @static 
+         */
+        public static function formAddAnotherField($href, $title = 'Добавить ещё'){
+            return \Rutorika\Dashboard\HTML\FormBuilder::formAddAnotherField($href, $title);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $title
+         * @param string $name
+         * @param string $field
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function formRow($title, $name, $field, $options){
+            return \Rutorika\Dashboard\HTML\FormBuilder::formRow($title, $name, $field, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $name
+         * @param array $options
+         * @return array 
+         * @static 
+         */
+        public static function formFieldDefaultOptions($name, $options){
+            return \Rutorika\Dashboard\HTML\FormBuilder::formFieldDefaultOptions($name, $options);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function color($name, $value = null, $options = array()){
+            return \Rutorika\Dashboard\HTML\FormBuilder::color($name, $value, $options);
+        }
+        
+        /**
+         * Open up a new HTML form.
+         *
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function open($options = array()){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::open($options);
+        }
+        
+        /**
+         * Create a new model based form builder.
+         *
+         * @param mixed $model
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function model($model, $options = array()){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::model($model, $options);
+        }
+        
+        /**
+         * Set the model instance on the form builder.
+         *
+         * @param mixed $model
+         * @return void 
+         * @static 
+         */
+        public static function setModel($model){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            \Rutorika\Dashboard\HTML\FormBuilder::setModel($model);
+        }
+        
+        /**
+         * Close the current form.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function close(){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::close();
+        }
+        
+        /**
+         * Generate a hidden field with the current CSRF token.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function token(){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::token();
+        }
+        
+        /**
+         * Create a form label element.
+         *
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function label($name, $value = null, $options = array()){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::label($name, $value, $options);
+        }
+        
+        /**
+         * Create a form input field.
+         *
+         * @param string $type
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function input($type, $name, $value = null, $options = array()){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::input($type, $name, $value, $options);
+        }
+        
+        /**
+         * Create a text input field.
+         *
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function text($name, $value = null, $options = array()){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::text($name, $value, $options);
+        }
+        
+        /**
+         * Create a password input field.
+         *
+         * @param string $name
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function password($name, $options = array()){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::password($name, $options);
+        }
+        
+        /**
+         * Create a hidden input field.
+         *
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function hidden($name, $value = null, $options = array()){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::hidden($name, $value, $options);
+        }
+        
+        /**
+         * Create an e-mail input field.
+         *
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function email($name, $value = null, $options = array()){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::email($name, $value, $options);
+        }
+        
+        /**
+         * Create a url input field.
+         *
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function url($name, $value = null, $options = array()){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::url($name, $value, $options);
+        }
+        
+        /**
+         * Create a file input field.
+         *
+         * @param string $name
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function file($name, $options = array()){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::file($name, $options);
+        }
+        
+        /**
+         * Create a textarea input field.
+         *
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function textarea($name, $value = null, $options = array()){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::textarea($name, $value, $options);
+        }
+        
+        /**
+         * Create a number input field.
+         *
+         * @param string $name
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function number($name, $value = null, $options = array()){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::number($name, $value, $options);
+        }
+        
+        /**
+         * Create a select box field.
+         *
+         * @param string $name
+         * @param array $list
+         * @param string $selected
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function select($name, $list = array(), $selected = null, $options = array()){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::select($name, $list, $selected, $options);
+        }
+        
+        /**
+         * Create a select range field.
+         *
+         * @param string $name
+         * @param string $begin
+         * @param string $end
+         * @param string $selected
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function selectRange($name, $begin, $end, $selected = null, $options = array()){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::selectRange($name, $begin, $end, $selected, $options);
+        }
+        
+        /**
+         * Create a select year field.
+         *
+         * @param string $name
+         * @param string $begin
+         * @param string $end
+         * @param string $selected
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function selectYear(){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::selectYear();
+        }
+        
+        /**
+         * Create a select month field.
+         *
+         * @param string $name
+         * @param string $selected
+         * @param array $options
+         * @param string $format
+         * @return string 
+         * @static 
+         */
+        public static function selectMonth($name, $selected = null, $options = array(), $format = '%B'){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::selectMonth($name, $selected, $options, $format);
+        }
+        
+        /**
+         * Get the select option for the given value.
+         *
+         * @param string $display
+         * @param string $value
+         * @param string $selected
+         * @return string 
+         * @static 
+         */
+        public static function getSelectOption($display, $value, $selected){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::getSelectOption($display, $value, $selected);
+        }
+        
+        /**
+         * Create a checkbox input field.
+         *
+         * @param string $name
+         * @param mixed $value
+         * @param bool $checked
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function checkbox($name, $value = 1, $checked = null, $options = array()){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::checkbox($name, $value, $checked, $options);
+        }
+        
+        /**
+         * Create a radio button input field.
+         *
+         * @param string $name
+         * @param mixed $value
+         * @param bool $checked
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function radio($name, $value = null, $checked = null, $options = array()){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::radio($name, $value, $checked, $options);
+        }
+        
+        /**
+         * Create a HTML reset input element.
+         *
+         * @param string $value
+         * @param array $attributes
+         * @return string 
+         * @static 
+         */
+        public static function reset($value, $attributes = array()){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::reset($value, $attributes);
+        }
+        
+        /**
+         * Create a HTML image input element.
+         *
+         * @param string $url
+         * @param string $name
+         * @param array $attributes
+         * @return string 
+         * @static 
+         */
+        public static function image($url, $name = null, $attributes = array()){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::image($url, $name, $attributes);
+        }
+        
+        /**
+         * Create a submit button element.
+         *
+         * @param string $value
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function submit($value = null, $options = array()){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::submit($value, $options);
+        }
+        
+        /**
+         * Create a button element.
+         *
+         * @param string $value
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function button($value = null, $options = array()){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::button($value, $options);
+        }
+        
+        /**
+         * Get the ID attribute for a field name.
+         *
+         * @param string $name
+         * @param array $attributes
+         * @return string 
+         * @static 
+         */
+        public static function getIdAttribute($name, $attributes){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::getIdAttribute($name, $attributes);
+        }
+        
+        /**
+         * Get the value that should be assigned to the field.
+         *
+         * @param string $name
+         * @param string $value
+         * @return string 
+         * @static 
+         */
+        public static function getValueAttribute($name, $value = null){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::getValueAttribute($name, $value);
+        }
+        
+        /**
+         * Get a value from the session's old input.
+         *
+         * @param string $name
+         * @return string 
+         * @static 
+         */
+        public static function old($name){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::old($name);
+        }
+        
+        /**
+         * Determine if the old input is empty.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function oldInputIsEmpty(){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::oldInputIsEmpty();
+        }
+        
+        /**
+         * Get the session store implementation.
+         *
+         * @return \Illuminate\Session\Store $session
+         * @static 
+         */
+        public static function getSessionStore(){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::getSessionStore();
+        }
+        
+        /**
+         * Set the session store implementation.
+         *
+         * @param \Illuminate\Session\Store $session
+         * @return $this 
+         * @static 
+         */
+        public static function setSessionStore($session){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::setSessionStore($session);
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param callable $macro
+         * @return void 
+         * @static 
+         */
+        public static function macro($name, $macro){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            \Rutorika\Dashboard\HTML\FormBuilder::macro($name, $macro);
+        }
+        
+        /**
+         * Checks if macro is registered
+         *
+         * @param string $name
+         * @return boolean 
+         * @static 
+         */
+        public static function hasMacro($name){
+            //Method inherited from \Illuminate\Html\FormBuilder            
+            return \Rutorika\Dashboard\HTML\FormBuilder::hasMacro($name);
+        }
+        
+    }
+
+
+    class Flash extends \Rutorika\Dashboard\Notifications\FlashFacade{
         
         /**
          * 
@@ -12238,7 +12501,7 @@ namespace {
          * @static 
          */
         public static function success($message){
-            return \Rico\Notifications\FlashNotifier::success($message);
+            return \Rutorika\Dashboard\Notifications\FlashNotifier::success($message);
         }
         
         /**
@@ -12247,7 +12510,7 @@ namespace {
          * @static 
          */
         public static function info($message){
-            return \Rico\Notifications\FlashNotifier::info($message);
+            return \Rutorika\Dashboard\Notifications\FlashNotifier::info($message);
         }
         
         /**
@@ -12256,7 +12519,7 @@ namespace {
          * @static 
          */
         public static function warning($message){
-            return \Rico\Notifications\FlashNotifier::warning($message);
+            return \Rutorika\Dashboard\Notifications\FlashNotifier::warning($message);
         }
         
         /**
@@ -12265,7 +12528,7 @@ namespace {
          * @static 
          */
         public static function error($message){
-            return \Rico\Notifications\FlashNotifier::error($message);
+            return \Rutorika\Dashboard\Notifications\FlashNotifier::error($message);
         }
         
         /**
@@ -12274,7 +12537,7 @@ namespace {
          * @static 
          */
         public static function danger($message){
-            return \Rico\Notifications\FlashNotifier::danger($message);
+            return \Rutorika\Dashboard\Notifications\FlashNotifier::danger($message);
         }
         
         /**
@@ -12283,7 +12546,7 @@ namespace {
          * @static 
          */
         public static function message($message, $level = 'info'){
-            return \Rico\Notifications\FlashNotifier::message($message, $level);
+            return \Rutorika\Dashboard\Notifications\FlashNotifier::message($message, $level);
         }
         
         /**
@@ -12292,7 +12555,7 @@ namespace {
          * @static 
          */
         public static function formInvalid(){
-            return \Rico\Notifications\FlashNotifier::formInvalid();
+            return \Rutorika\Dashboard\Notifications\FlashNotifier::formInvalid();
         }
         
     }

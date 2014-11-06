@@ -13,15 +13,22 @@
     "barryvdh/laravel-debugbar": "dev-master",
     "fzaninotto/faker": "1.*@dev",
     "doctrine/dbal": "~2.4",
-    "rutorika/sortable": "dev-master",
     "guzzlehttp/guzzle": "4.*",
     "zizaco/entrust": "~1.2@dev",
+    "rutorika/dashboard": "dev-master",
+    "rutorika/sortable": "dev-master",
     "zizaco/confide": "~4.0@dev",
     "indatus/dispatcher": "1.*"
   },
   "require-dev": {
     "way/generators": "2.*"
   },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/boxfrommars/rutorika-dashboard"
+    }
+  ],
   "autoload": {
     "classmap": [
       "app/commands",

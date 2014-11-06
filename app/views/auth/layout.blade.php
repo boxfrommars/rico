@@ -16,7 +16,7 @@
 <body>
 
 <div class="container">
-    @include('dashboard.partials.flash')
+    @include('dashboard::partials.flash')
     @yield('content')
 </div>
 

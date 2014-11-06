@@ -5,7 +5,7 @@
 
 namespace App\Controllers\ExampleApp;
 
-use Rico\Dashboard\Controllers\RestController;
+use Rutorika\Dashboard\Controllers\RestController;
 
 class HumanController extends RestController {
 
@@ -16,8 +16,4 @@ class HumanController extends RestController {
         'bio'    => 'required',
         'height' => 'numeric',
     ];
-
-    public function test() {
-        return \Input::all();
-    }
 }

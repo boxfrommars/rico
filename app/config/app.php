@@ -118,7 +118,8 @@ return [
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
-        'Rico\Notifications\FlashServiceProvider',
+
+        'Rutorika\Dashboard\DashboardServiceProvider',
         'Rutorika\Sortable\SortableServiceProvider',
 
         'Zizaco\Confide\ServiceProvider',
@@ -165,7 +166,7 @@ return [
         'Eloquent' => 'Illuminate\Database\Eloquent\Model',
         'Event' => 'Illuminate\Support\Facades\Event',
         'File' => 'Illuminate\Support\Facades\File',
-        'Form' => 'Illuminate\Support\Facades\Form',
+//        'Form' => 'Illuminate\Support\Facades\Form',
         'Hash' => 'Illuminate\Support\Facades\Hash',
         'HTML' => 'Illuminate\Support\Facades\HTML',
         'Input' => 'Illuminate\Support\Facades\Input',
@@ -190,7 +191,8 @@ return [
         'Validator' => 'Illuminate\Support\Facades\Validator',
         'View' => 'Illuminate\Support\Facades\View',
 
-        'Flash' => 'Rico\Notifications\FlashFacade',
+        'Form' => 'Rutorika\Dashboard\HTML\FormBuilderFacade',
+        'Flash' => 'Rutorika\Dashboard\Notifications\FlashFacade',
 
         'Confide' => 'Zizaco\Confide\Facade',
         'Entrust' => 'Zizaco\Entrust\EntrustFacade',

@@ -77,9 +77,3 @@ App::down(function () {
 */
 
 require app_path() . '/filters.php';
-require app_path() . '/macros.php';
-
-// also see /app/routes.php
-App::error(function (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-    return Response::view('main.404', array(), 404);
-});

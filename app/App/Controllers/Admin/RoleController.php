@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Admin;
 
-use Rico\Dashboard\Controllers\CrudController;
+use Rutorika\Dashboard\Controllers\CrudController;
 
 class RoleController extends CrudController
 {

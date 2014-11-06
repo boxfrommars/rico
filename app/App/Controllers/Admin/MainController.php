@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Admin;
 
-use Rico\Dashboard\Controllers\BaseController;
+use Rutorika\Dashboard\Controllers\BaseController;
 
 class MainController extends BaseController
 {

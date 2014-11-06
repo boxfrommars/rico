@@ -7,15 +7,20 @@ namespace App\Controllers\Admin;
 
 
 use App\Entities\User;
-use Rico\Dashboard\Controllers\CrudController;
+use Rutorika\Dashboard\Controllers\CrudController;
 
 class UserController extends CrudController {
 
     protected $_entity = '\App\Entities\User';
     protected $_name = 'user';
     protected $_rules = [
-        'username' => 'required|alpha_dash',
-        'email'    => 'required|email',
+        'username' => 'required|alpha_dash|unique:users,username',
+        'email'    => 'required|email|unique:users,email',
+        'password' => 'min:4',
+    ];
+    protected $_updateRules = [
+        'username' => 'required|alpha_dash|unique:users,username,%id%',
+        'email'    => 'required|email|unique:users,email,%id%',
         'password' => 'min:4',
     ];
     protected $_afterSaveRoute = 'self'; // 'self' (default) | 'index' | 'parent'
@@ -38,11 +43,11 @@ class UserController extends CrudController {
         return array_merge(['confirmed' => false], $input);
     }
 
-
     /**
      * Обновляем связи многие ко многим
      *
      * @param User $user
+     * @param array $input
      */
     protected function _onEntitySaved($user, $input = []) {
 

@@ -1,7 +1,7 @@
 <?php
 namespace App\Entities;
 
-use Rico\Dashboard\Entities\Entity;
+use Rutorika\Dashboard\Entities\Entity;
 
 /**
  * Rico\Auth\User
