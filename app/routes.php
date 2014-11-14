@@ -8,13 +8,6 @@ Route::get('/',
     }
 );
 
-
-Route::get('angular-app',
-    function () {
-        return View::make('example.app');
-    }
-);
-
 // все пост-запросы прогоняем через csrf фильтр
 Route::when('/admin/*', 'csrf', array('post'));
 
@@ -23,27 +16,15 @@ App::missing(function() {
     return Response::view('main.404', array(), 404);
 });
 
+/** common routes */
 Route::group(
-    ['prefix' => 'api'],
+    array('before' => ['auth', 'can:manage_dashboard']),
     function () {
-        Route::get(   'humans',       ['as' => 'api.human.index',     'uses' => 'App\Controllers\ExampleApp\HumanController@index']);
-        Route::post(  'humans',       ['as' => 'api.human.store',     'uses' => 'App\Controllers\ExampleApp\HumanController@store']);
-        Route::get(   'humans/{id}',  ['as' => 'api.human.view',      'uses' => 'App\Controllers\ExampleApp\HumanController@view']);
-        Route::put(   'humans/{id}',  ['as' => 'api.human.update',    'uses' => 'App\Controllers\ExampleApp\HumanController@store']);
-        Route::delete('humans/{id}',  ['as' => 'api.human.destroy',   'uses' => 'App\Controllers\ExampleApp\HumanController@destroy']);
+        Route::post('/admin/sort',  ['as' => 'sorter',      'uses' => '\Rutorika\Sortable\SortableController@sort']);
+        Route::post('upload',       ['as' => 'uploader',    'uses' => '\Rutorika\Dashboard\Uploader\UploadController@handle']);
     }
 );
 
-
-Route::post('upload', ['before' => ['auth', 'can:manage_dashboard'], 'as' => 'uploader', 'uses' => 'Rutorika\Dashboard\Uploader\UploadController@handle']);
-
-/** общие админские роуты */
-Route::group(
-    array('before' => ['auth', 'can:manage_dashboard'], 'prefix' => 'admin'),
-    function () {
-        Route::post('sort', '\Rutorika\Sortable\SortableController@sort');
-    }
-);
 
 Route::group(
     ['before' => ['auth', 'can:manage_dashboard'], 'prefix' => 'admin', 'namespace' => 'App\Controllers\Admin'],
@@ -53,15 +34,13 @@ Route::group(
         $crudRoutes = [
             ['name' => 'user'],
             ['name' => 'role', 'entityNameSpace' => 'Rico\Auth\\'],
-
-            ['name' => 'human', 'entityNameSpace' => 'App\Entities\\'],
-            ['name' => 'pet', 'prefix' => 'human/{human}/'],
         ];
 
         generate_crud_routes($crudRoutes);
     }
 );
 
+// confide routes
 Route::group(
     ['namespace' => 'Rico\Auth'],
     function () {
