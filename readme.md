@@ -74,7 +74,7 @@
 
 в общем структура приложения в точности повторяет структуру поставляемую с фреймворком Laravel, за исключением использования неймспейса App, для более удобной структуры (см. https://laracasts.com/lessons/where-do-i-put-this) 
 
-#### Добавление сущности
+#### Добавление сущности и соответствующего раздела админки
 
 Для начала создаётся модель и таблица сущностей, 
 
@@ -282,5 +282,50 @@ $crudRoutes = [
 список теперь доступен по `/admin/human/index` и т.д.
 
 для получения и отображения данных в приложении теперь можно использовать стандартные eloquent запрсы (см. http://laravel.com/docs/4.2/eloquent)
+
+
+#### Добавление REST-контроллера
+
+Воспользуемся той же сущностью Human и добавим контроллер и роуты для доступа к ней по REST
+
+Для этого создадим контрллер и унаследуем его от `Rutorika\Dashboard\Controllers\RestController`
+ 
+```php
+namespace App\Controllers\ExampleApp;
+
+use Rutorika\Dashboard\Controllers\RestController;
+
+class HumanController extends RestController {
+
+    protected $_entity = '\App\Entities\Human';
+    protected $_name = 'human';
+    protected $_rules = [
+        'title' => 'required',
+        'bio'    => 'required',
+        'height' => 'numeric',
+    ];
+}
+```
+Настройки все те же, что и для CRUD-контрллера, за исключением свойств, связанных с видами и редиректами (они, естественно, отсутствуют)
+
+* `$_entity` строка, в которой указывается класс сущности
+* `$_name` имя сущности
+* `$_rules` рулзы для валидации (общие, используется, если не указаны `$_createRules` и/или `$_updateRules`)
+* `$_createRules` рулзы для валидации во время создания
+* `$_updateRules` рулзы для валидации во время апдейта
+
+теперь необходимо добавить роуты в файл `app/routes.php`:
+
+```
+Route::get(   'humans',       ['as' => 'api.human.index',     'uses' => 'App\Controllers\ExampleApp\HumanController@index']);
+Route::post(  'humans',       ['as' => 'api.human.store',     'uses' => 'App\Controllers\ExampleApp\HumanController@store']);
+Route::get(   'humans/{id}',  ['as' => 'api.human.view',      'uses' => 'App\Controllers\ExampleApp\HumanController@view']);
+Route::put(   'humans/{id}',  ['as' => 'api.human.update',    'uses' => 'App\Controllers\ExampleApp\HumanController@store']);
+Route::delete('humans/{id}',  ['as' => 'api.human.destroy',   'uses' => 'App\Controllers\ExampleApp\HumanController@destroy']);
+```
+
+или воспользоватся хелпером
+
+всё, просмотр изменение и создание сущностей доступны по соответствующим урлам
 
 
