@@ -324,8 +324,14 @@ Route::put(   'humans/{id}',  ['as' => 'api.human.update',    'uses' => 'App\Con
 Route::delete('humans/{id}',  ['as' => 'api.human.destroy',   'uses' => 'App\Controllers\ExampleApp\HumanController@destroy']);
 ```
 
-или воспользоватся хелпером
+или воспользоваться хелпером `rest_routes`
 
+```
+rest_routes()
+```
 всё, просмотр изменение и создание сущностей доступны по соответствующим урлам
 
 
+#### Работа с пользователями
+
+Для аутентификации и авторизации используется библиотека 
