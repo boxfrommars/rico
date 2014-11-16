@@ -334,4 +334,55 @@ rest_routes()
 
 #### Работа с пользователями
 
-Для аутентификации и авторизации используется библиотека 
+Для аутентификации и авторизации используются библиотеки Confide (https://github.com/Zizaco/confide) и Entrust (https://github.com/Zizaco/entrust) соответственно.
+структура базы данных для пользователей см `docs/db-schema.dia` или `docs/db-schema.png`
+
+##### разграничение роутов по правам
+
+вы можете использовать фильтр `can:{permission_name}` (наличие разрешения) и `auth` (аутентифицирован ли пользователь), например:
+
+```
+Route::post('/admin/sort',  ['before' => ['auth', 'can:manage_dashboard'], 'as' => 'sorter', 'uses' => '\Rutorika\Sortable\SortableController@sort']);
+```
+
+в таком случае доступ по данному роуту возможен только для пользователей у которых есть разрешение на `manage_dashboard`
+
+также вы можете использовать стандартные механизмы Entrust, использующие wildcards:
+
+```
+// Only users with roles that have the 'manage_posts' permission will
+// be able to access any route within admin/post.
+Entrust::routeNeedsPermission( 'admin/post*', 'manage_posts' );
+
+// Only owners will have access to routes within admin/advanced
+Entrust::routeNeedsRole( 'admin/advanced*', 'Owner' );
+
+// Optionally the second parameter can be an array of permissions or roles.
+// User would need to match all roles or permissions for that route.
+Entrust::routeNeedsPermission( 'admin/post*', array('manage_posts','manage_comments') );
+
+Entrust::routeNeedsRole( 'admin/advanced*', array('Owner','Writer') );
+```
+
+Подробнее см. https://github.com/Zizaco/entrust
+
+##### проверка в коде
+
+В коде вы можете использовать следующие порверки
+
+```
+$user->hasRole("owner");    // false проверяем роли
+$user->hasRole("admin");    // true
+$user->can("manage_posts"); // true проверяем разрешение 
+$user->can("manage_users"); // false
+```
+
+##### аутентификация
+
+контроллер отвечающий за аутентификацию -- `\Rico\Auth\UsersController`, в него частично (!) методы контроллера из пакета Confide (только касающиеся входа/выхода),
+для работы с забытыми паролями, регистрацией, подтверждениями и прочим, перенесите нужные методы из `controllers/_UserController.php`, при этом внимательно поверьте конфигурацию 
+(`app/config/zizaco/confide/config.php`) и соответствующие виды.
+
+
+
+
