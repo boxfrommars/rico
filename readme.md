@@ -7,6 +7,7 @@
 
     xu@calypso:~$ git clone https://github.com/boxfrommars/rico.git
     xu@calypso:~$ cd rico/
+    xu@calypso:~$ rm -rf .git // пока так, пока нет композер-пакета
 
 создаём бд (если изменили здесь параметры бд, то меняем их в кофигурации в файле `.env.(local.)php)`
 
