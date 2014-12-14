@@ -263,6 +263,7 @@ class HumanController extends CrudController {
 * `colorField` выбор цвета
 * `numberField` числовое поле
 * `selectField` селект
+* `select2Field` селект select2 (подробнее см. https://github.com/boxfrommars/rutorika-dashboard/wiki/Select2-Form-field)
 * `checkboxField` чекбокс
 * `geopointField` точка на карте (используются яндекс карты)
 * `imageField` изображение
