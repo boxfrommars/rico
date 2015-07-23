@@ -10,13 +10,13 @@
   "require": {
     "laravel/framework": "4.2.*",
     "barryvdh/laravel-ide-helper": "1.*",
-    "barryvdh/laravel-debugbar": "dev-master",
+    "barryvdh/laravel-debugbar": "~1.8",
     "fzaninotto/faker": "1.*@dev",
     "doctrine/dbal": "~2.4",
     "guzzlehttp/guzzle": "4.*",
     "zizaco/entrust": "~1.2@dev",
-    "rutorika/dashboard": "dev-master",
-    "rutorika/sortable": "dev-master",
+    "rutorika/dashboard": "~0.7",
+    "rutorika/sortable": "1.2.*",
     "zizaco/confide": "~4.0@dev",
     "indatus/dispatcher": "1.*"
   },
